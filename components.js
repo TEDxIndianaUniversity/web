@@ -8,7 +8,8 @@ class WixWebShareButton extends HTMLElement {
         const c = `<div data-testid="linkElement" class="VU4Mnk wixui-button wixui-tedx-button tedx-button wixui-forty-vw forty-vw wixui-no-arrow no-arrow wixui-webshare-button webshare-button PlZyDq" aria-disabled="false"><span class="w4Vxx6 wixui-button__label">${this.getAttribute("label")}</span></div>`
         this.innerHTML = c;
         this.addEventListener('click', async () => {
-            try { await navigator.share(this.getAttribute("share-data"));}
+            shareDataJson = JSON.parse(this.getAttribute("share-data"));
+            try { await navigator.share(shareDataJson);}
             catch (err) {console.error(`Web Share API Error: ${err}`);}
         })
     }
