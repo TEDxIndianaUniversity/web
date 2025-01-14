@@ -13,7 +13,7 @@ class WixWebShareButton extends HTMLElement {
     }
     attributeChangedCallback() { this.render(); }
     render() {
-        const c = `<div class="comp-m5vn07vb3 UHSxqn" id="comp-m5vn07vb3" role="button" tabindex="0" aria-disabled="false"><div data-testid="linkElement" class="VU4Mnk wixui-button wixui-tedx-button tedx-button wixui-forty-vw forty-vw wixui-no-arrow no-arrow wixui-webshare-button webshare-button PlZyDq" aria-disabled="false"><span class="w4Vxx6 wixui-button__label">${this.getAttribute("label")}</span></div></div>`
+        const c = `<div class="comp-m5vn07vb3 UHSxqn" id="comp-m5vn07vb3" role="button" tabindex="0" aria-disabled="false"><div data-testid="linkElement" class="VU4Mnk wixui-button wixui-tedx-button tedx-button wixui-no-arrow no-arrow wixui-webshare-button webshare-button PlZyDq" aria-disabled="false"><span class="w4Vxx6 wixui-button__label">${this.getAttribute("label")}</span></div></div>`
         this.innerHTML = c;
 
         
