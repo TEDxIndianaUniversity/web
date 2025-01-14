@@ -18,4 +18,3 @@ class WixWebShareButton extends HTMLElement {
     }
 }
 customElements.define("tedx-wix-share-button", WixWebShareButton);
-this.getAttribute("share-data")
