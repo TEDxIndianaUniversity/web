@@ -28,7 +28,7 @@ class WixOpenDateEmbed extends HTMLElement {
     connectedCallback() { this.render(); }
     attributeChangedCallback() { this.render(); }
     render() {
-        const c = `<script src="/packs/od_embed.js"></script><iframe allowpaymentrequest="true" id="od-confirm-${this.getAttribute("event-id")}-iframe" scrolling="no" src="https://app.opendate.io/confirms/${this.getAttribute("event-id")}/web_orders/new" style="border: none; width: 1px; min-width: 100%; overflow: hidden; height: 150px;" title="Opendate"></iframe><script>ODEmbed("od-confirm-${this.getAttribute("event-id")}-iframe", {bgColor: "#fdfdfd"});</script>`
+        const c = `<script src="https://app.opendate.io/packs/od_embed.js"></script><iframe allowpaymentrequest="true" id="od-confirm-${this.getAttribute("event-id")}-iframe" scrolling="no" src="https://app.opendate.io/confirms/${this.getAttribute("event-id")}/web_orders/new" style="border: none; width: 1px; min-width: 100%; overflow: hidden; height: 150px;" title="Opendate"></iframe><script>ODEmbed("od-confirm-${this.getAttribute("event-id")}-iframe", {bgColor: "#fdfdfd"});</script>`
         this.innerHTML = c;
     }
 }
