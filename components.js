@@ -18,3 +18,18 @@ class WixWebShareButton extends HTMLElement {
     }
 }
 customElements.define("tedx-wix-share-button", WixWebShareButton);
+
+
+
+class WixOpenDateEmbed extends HTMLElement {
+    static observedAttributes = ["event-id"];
+    constructor() {super();}
+    attributeChangedCallback(name, oldValue, newValue) { render() }
+    connectedCallback() { this.render(); }
+    attributeChangedCallback() { this.render(); }
+    render() {
+        const c = `<div id="od-internal-ticket-embed"><script src="/packs/od_embed.js"></script><iframe allowpaymentrequest="true" id="od-confirm-${this.getAttribute("event-id")}-iframe" scrolling="no" src="https://app.opendate.io/confirms/${this.getAttribute("event-id")}/web_orders/new" style="border: none; width: 1px; min-width: 100%; overflow: hidden; height: 150px;" title="Opendate"></iframe><script>ODEmbed("od-confirm-${this.getAttribute("event-id")}-iframe", {bgColor: "#fdfdfd"});</script></div>`
+        this.innerHTML = c;
+    }
+}
+customElements.define("tedx-wix-opendate-embed", WixOpenDateEmbed);
