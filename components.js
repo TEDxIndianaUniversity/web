@@ -83,8 +83,8 @@ class WixOpenDateEmbed extends HTMLElement {
                     composed: true
                 }),
             );
-            this.style.display = 'inline!important';
-            this.style.opacity = '100!important';
+            this.style.visibility = 'visible!important';
+            alertEl.style.visibility = 'visible!important';
         }
     }
 }
