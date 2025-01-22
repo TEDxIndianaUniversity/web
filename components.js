@@ -25,18 +25,29 @@ class WixOpenDateEmbed extends HTMLElement {
     static observedAttributes = ["event-id"];
     constructor() {super();}
     attributeChangedCallback(name, oldValue, newValue) { render() }
-    connectedCallback() { this.render(); }
+    connectedCallback() { 
+        
+        this.render(); 
+    }
     attributeChangedCallback() { this.render(); }
     render() {
         this.id = `od-embed-${this.getAttribute("event-id")}`;
-        const c = `<script src="https://app.opendate.io/packs/od_embed.js"></script>
-        <iframe src="https://app.opendate.io/confirms/${this.getAttribute("event-id")}/web_orders/new" id="od-confirm-${this.getAttribute("event-id")}-iframe" title="Opendate" scrolling="no" allowpaymentrequest="true" style="border:none; width: 1px; min-width: 100%;"></iframe>
-        <script type="text/javascript">
-        ODEmbed("od-confirm-${this.getAttribute("event-id")}-iframe");
-        ODEmbed("od-embed-${this.getAttribute("event-id")}");
-        </script>`
-        this.innerHTML = c;
-        
+        const embedScript = document.createElement('script');
+        embedScript.setAttribute('src','https://app.opendate.io/packs/od_embed.js')
+        const frame = document.createElement("iframe");
+        Object.assign(frame, {
+            id: `od-confirm-${this.getAttribute("event-id")}-iframe`,
+            src: `https://app.opendate.io/confirms/${this.getAttribute("event-id")}/web_orders/new`,
+            title: 'Opendate',
+            scrolling: 'no',
+            allowpaymentrequest: 'true',
+            style: 'border:none; width: 1px; min-width: 100%;'
+          })
+        const resizerInit = document.createElement('script');
+        resizerInit.innerText = `ODEmbed("od-confirm-${this.getAttribute("event-id")}-iframe");`;
+        this.insertAdjacentElement('afterend',embedScript);
+        embedScript.insertAdjacentElement('afterend',frame);
+        frame.insertAdjacentElement('afterend',resizerInit);
     }
 }
 customElements.define("tedx-wix-opendate-embed", WixOpenDateEmbed);
