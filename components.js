@@ -94,15 +94,15 @@ class WixOpenDateEmbed extends HTMLElement {
             embedScript.insertAdjacentElement('afterend', frame);
             frame.insertAdjacentElement('afterend', resizerInit);
         } else {
+            this.insertAdjacentElement('afterend', alertStyle);
+            alertStyle.insertAdjacentElement('afterend', alertEl);
+            this.style.width = 0;
+            this.style.height = 0;
             this.dispatchEvent(new CustomEvent("iframe-did-load", {
                 bubbles: true,
                 cancelable: false,
                 composed: true
             }));
-            this.insertAdjacentElement('afterend', alertStyle);
-            alertStyle.insertAdjacentElement('afterend', alertEl);
-            this.style.width = 0;
-            this.style.height = 0;
         }
     }
 }
