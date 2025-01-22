@@ -74,7 +74,7 @@ class WixOpenDateEmbed extends HTMLElement {
             }
             errorFree = true;
         } catch {
-            errorEevnt = false;
+            errorFree = false;
         }
 
         if (errorFree) {
