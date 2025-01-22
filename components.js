@@ -12,6 +12,11 @@ class WixWebShareButton extends HTMLElement {
             }
             catch (err) { console.error(`Web Share API Error: ${err}`); }
         })
+
+
+
+
+
     }
     attributeChangedCallback() { this.render(); }
     render() {
@@ -27,11 +32,12 @@ class WixOpenDateEmbed extends HTMLElement {
     static observedAttributes = ["event-id"];
     constructor() { super(); }
     attributeChangedCallback(name, oldValue, newValue) { render() }
-    connectedCallback() {
-        
-        this.render();
+    connectedCallback() {this.render();}
+    attributeChangedCallback() { this.changeId(); }
+    changeId() {
+        const frame = document.querySelectorAll(`[id^=od-confirm-]`)[0];
+        frame.setAttribute('src', `https://app.opendate.io/confirms/${this.getAttribute("event-id")}/web_orders/new`);
     }
-    attributeChangedCallback() { this.render(); }
     render() {
         
         this.id = `od-embed-${this.getAttribute("event-id")}`;
