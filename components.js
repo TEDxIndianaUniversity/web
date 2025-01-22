@@ -82,8 +82,9 @@ class WixOpenDateEmbed extends HTMLElement {
             alertStyle.insertAdjacentElement('afterend', alertEl);
             this.style.width = 0;
             this.style.height = 0;
-
+            console.log("dispatching...");
             this.dispatchEvent(this.errorEvent);
+            console.log("dispatched.");
         }
     }
 }
