@@ -28,16 +28,11 @@ class WixOpenDateEmbed extends HTMLElement {
     constructor() { super(); }
     attributeChangedCallback(name, oldValue, newValue) { render() }
     connectedCallback() {
-
         this.render();
     }
     attributeChangedCallback() { this.render(); }
     render() {
-        this.errorEvent = new CustomEvent("iframe-error-show", {
-            bubbles: true,
-            cancelable: false,
-            composed: true
-        });
+        
         this.id = `od-embed-${this.getAttribute("event-id")}`;
         const embedScript = document.createElement('script');
         embedScript.setAttribute('src', 'https://app.opendate.io/packs/od_embed.js')
@@ -82,9 +77,11 @@ class WixOpenDateEmbed extends HTMLElement {
             alertStyle.insertAdjacentElement('afterend', alertEl);
             this.style.width = 0;
             this.style.height = 0;
-            console.log("dispatching...");
-            this.dispatchEvent(this.errorEvent);
-            console.log("dispatched.");
+            this.dispatchEvent(new CustomEvent("iframe-error-show", {
+                bubbles: true,
+                cancelable: false,
+                composed: true
+            }));
         }
     }
 }
