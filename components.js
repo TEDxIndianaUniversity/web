@@ -84,7 +84,7 @@ class WixOpenDateEmbed extends HTMLElement {
         this.addEventListener('iframe-error-show', (ev) => {
             console.error('event received:' + ev);
         })
-       
+        
 
         if (errorFree) {
             frame.setAttribute('src', `https://app.opendate.io/confirms/${this.getAttribute("event-id")}/web_orders/new`);
@@ -94,7 +94,11 @@ class WixOpenDateEmbed extends HTMLElement {
             embedScript.insertAdjacentElement('afterend', frame);
             frame.insertAdjacentElement('afterend', resizerInit);
         } else {
-            this.dispatchEvent(errorEvent);
+            this.dispatchEvent(new CustomEvent("iframe-did-load", {
+                bubbles: true,
+                cancelable: false,
+                composed: true
+            }));
             this.insertAdjacentElement('afterend', alertStyle);
             alertStyle.insertAdjacentElement('afterend', alertEl);
             this.style.width = 0;
