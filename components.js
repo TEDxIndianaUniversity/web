@@ -41,7 +41,7 @@ class WixOpenDateEmbed extends HTMLElement {
             title: 'Opendate',
             scrolling: 'no',
             allowpaymentrequest: 'true',
-            style: 'border:none; width: 1px; min-width: 100%;'
+            style: 'border:none; width: 1px; min-width: 100%;transition: all .5s ease-in-out;'
           })
         const resizerInit = document.createElement('script');
         resizerInit.innerText = `ODEmbed("od-confirm-${this.getAttribute("event-id")}-iframe");`;
