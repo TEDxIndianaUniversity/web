@@ -78,7 +78,7 @@ class WixOpenDateEmbed extends HTMLElement {
             this.style.width = 0;
             this.style.height = 0;
             this.dispatchEvent(new CustomEvent("iframe-error-show", {
-                bubbles: true,
+                bubbles: true, 
                 cancelable: false,
                 composed: true
             }));
