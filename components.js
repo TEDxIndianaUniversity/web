@@ -109,3 +109,16 @@ class WixOpenDateEmbed extends HTMLElement {
     }
 }
 customElements.define("tedx-wix-opendate-embed", WixOpenDateEmbed);
+
+
+class MetaSetter extends HTMLElement {
+    static observedAttributes = ["name", "content"];
+    constructor() { super(); }
+    attributeChangedCallback(name, oldValue, newValue) { render() }
+    connectedCallback() {this.render();}
+    attributeChangedCallback() { this.render(); }
+    render() {
+        document.querySelector(`meta[name="${this.getAttribute("name")}"]`).setAttribute("content", this.getAttribute("content"));
+    }
+}
+customElements.define("tedx-set-meta", MetaSetter);
