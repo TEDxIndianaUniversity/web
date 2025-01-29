@@ -42,6 +42,7 @@ tedx-room-calendar, tedx-room-calendar > * {
     max-width: 900px;
     width: 100%;
     justify-self: center;
+    max-height: 90dvh;
 }
 
 .ec-dark .ec {

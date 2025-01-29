@@ -199,7 +199,7 @@ class RoomCalendar extends HTMLElement {
         
     function checkDirection() {
         if (touchendX - touchstartX > 60 || touchstartX - touchendX > 60) {
-            if (touchendX < touchstartX && ) ec.next()
+            if (touchendX < touchstartX) ec.next()
             if (touchendX > touchstartX) ec.prev()
         }
     }
