@@ -132,7 +132,8 @@ class RoomCalendar extends HTMLElement {
     connectedCallback() {
         const calStyle = document.createElement('link');
         calStyle.rel = 'stylesheet';
-        calStyle.href = 'https://tedxindianauniversity.github.io/web/calendar/cal-style.css'
+        // calStyle.href = 'https://tedxindianauniversity.github.io/web/calendar/cal-style.css'
+        calStyle.href = './calendar/cal-style.css';
         this.insertAdjacentElement('beforeBegin', calStyle);
 
         const calScript = document.createElement('script');
@@ -158,15 +159,8 @@ class RoomCalendar extends HTMLElement {
                 "title" : "Event"
             })
         });
-        console.log(calendarData);
-        // <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@event-calendar/build@3.9.0/event-calendar.min.css">
-        // <script src="https://cdn.jsdelivr.net/npm/@event-calendar/build@3.9.0/event-calendar.min.js"></script>
-        
 
-        this.innerHTML = `
-        
-        <div id="ec"></div>
-        `;
+        this.innerHTML = `<div id="ec"></div>`;
         
         const initScript = document.createElement('script');
         initScript.innerHTML = `const ec = new EventCalendar(document.getElementById('ec'), 

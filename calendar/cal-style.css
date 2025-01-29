@@ -1,12 +1,12 @@
 .ec {
-    color-scheme: light;
+    color-scheme: dark;
     --ec-h: 0;
     --ec-s: 0%;
     --ec-l-300: 91.00%;
     --ec-l-500: 83.50%;
     --ec-l-600: 78.40%;
     --ec-l-700: 71.40%;
-    --ec-bg-fallback-color: #fff;
+    --ec-bg-fallback-color: black;
     --ec-hs: var(--ec-h), var(--ec-s);
     --ec-color-300: hsl(var(--ec-hs), var(--ec-l-300));
     --ec-color-500: hsl(var(--ec-hs), var(--ec-l-500));
