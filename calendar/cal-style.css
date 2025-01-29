@@ -2,7 +2,17 @@ tedx-room-calendar, tedx-room-calendar > * {
     color-scheme: dark;
     color: rgb(218, 218, 218);
     font-family: 'Inter', sans-serif;
+    overflow-y: hidden;
 }
+
+tedx-next-event .tedx-ne {
+    width: 100%;
+    max-width: 700px!important;
+    justify-self: center;
+    justify-content: center;
+    align-content: center;
+}
+
 .ec {
     color-scheme: dark;
     --ec-h: 0;
@@ -42,7 +52,10 @@ tedx-room-calendar, tedx-room-calendar > * {
     max-width: 900px;
     width: 100%;
     justify-self: center;
-    max-height: 90dvh;
+}
+
+#ec .ec {
+    max-height: calc(100svh - 80px);
 }
 
 .ec-dark .ec {
@@ -68,6 +81,7 @@ tedx-room-calendar, tedx-room-calendar > * {
         --ec-bg-fallback-color: #22272e
     }
 }
+
 
 .ec-timeline .ec-container {
     display: flex;
@@ -235,6 +249,14 @@ tedx-room-calendar, tedx-room-calendar > * {
     bottom: auto;
     top: 0
 }
+
+@media only screen and (max-width: 755px) {
+    .ec-start {
+        flex: auto;
+        padding: 0 10px;
+    }
+}
+
 
 .ec-time-grid .ec-bg-event {
     width: 100%;
@@ -517,6 +539,8 @@ tedx-room-calendar, tedx-room-calendar > * {
     border-top: none;
     flex-shrink: 0;
     border-bottom: .25px rgb(75, 75, 75) solid;
+    margin-bottom: 1px;
+    z-index: 100;
 }
 
 .ec-all-day .ec-days {
