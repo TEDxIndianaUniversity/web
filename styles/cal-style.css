@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+.tedx-button {
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 0.8rem;
+    border: 2px solid rgba(97, 97, 97, 0.5);
+    background: rgba(74, 74, 74, 0.5);
+    width: max-content;
+    height: max-content;
+    padding: 10px 15px;
+
+    &.more-padding {
+       width: 180px;
+       height: 130px;
+       
+       @media screen and (max-width: 750px) {
+           width: 200px!important;
+           height: 60px!important;
+           padding: 10px 5px!important;
+       }
+    }
+
+    &.medium-padding {
+       /* padding: 20px 30px!important; */
+       width: 150px;
+       height: 100px;
+    }
+
+
+    &:hover {
+        background: rgba(74, 74, 74, 0.7);
+    }
+
+    &:active {
+        background: #4a4a4a;
+    }
+
+    .button__label {
+        color: white;
+        font-weight: 700;
+
+        &::after {
+            display: inline-flex;
+            position: relative;
+            color: white;
+            font-weight: 700;
+            height: 100%;
+            content: " \2192" / " ";
+            padding: 0px 2.5px;
+            align-items: center;
+        }
+    }
+
+    &.arrow-up {
+        .button__label {
+            &::after {
+                margin-left: 5px;
+                content: "\2191" / " ";
+            }
+        }
+    }
+
+    &.no-arrow {
+       .button__label {
+            &::after {
+               display: none;
+                margin: 0;
+                padding: 0;
+                content: "";
+            }
+        }
+    }
+
+    &.red {
+        background: rgba(178, 57, 57, 0.75);
+        border: 2px solid rgba(77, 24, 24, 0.5);
+
+        &:hover {
+            background: rgba(178, 57, 57, 0.85);
+        }
+
+        &:active {
+            background: rgba(178, 57, 57, 1);
+        }
+    }
+
+    &.white {
+        background: rgba(255, 255, 255, 1);
+        border: 2px solid rgba(77, 24, 24, 0.5);
+
+        .button__label {
+            color: black;
+
+            &::after {
+                color: black;
+            }
+        }
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        &:active {
+            background: rgba(255, 255, 255, 0.75);
+        }
+    }
+}
+
+
+.sharebutton-vw {
+    height: 50px;
+    width: calc(50vw-30px);
+    font-size: 16px;
+ }
+
+ .ec {
+    --ec-bg-color: #22272e;
+    --ec-text-color: #adbac7;
+  }
