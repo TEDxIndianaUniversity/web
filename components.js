@@ -198,8 +198,10 @@ class RoomCalendar extends HTMLElement {
     let touchendX = 0
         
     function checkDirection() {
-        if (touchendX < touchstartX) ec.next()
-        if (touchendX > touchstartX) ec.prev()
+        if (touchendX - touchstartX > 60 || touchstartX - touchendX > 60) {
+            if (touchendX < touchstartX && ) ec.next()
+            if (touchendX > touchstartX) ec.prev()
+        }
     }
 
     this.addEventListener('touchstart', e => {
