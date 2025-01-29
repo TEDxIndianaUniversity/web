@@ -1,3 +1,8 @@
+tedx-room-calendar, tedx-room-calendar > * {
+    color-scheme: dark;
+    color: rgb(218, 218, 218);
+    font-family: 'Inter', sans-serif;
+}
 .ec {
     color-scheme: dark;
     --ec-h: 0;
@@ -6,13 +11,14 @@
     --ec-l-500: 83.50%;
     --ec-l-600: 78.40%;
     --ec-l-700: 71.40%;
+    --ec-bg-color: rgb(28, 28, 28);
     --ec-bg-fallback-color: black;
     --ec-hs: var(--ec-h), var(--ec-s);
     --ec-color-300: hsl(var(--ec-hs), var(--ec-l-300));
     --ec-color-500: hsl(var(--ec-hs), var(--ec-l-500));
     --ec-color-600: hsl(var(--ec-hs), var(--ec-l-600));
     --ec-color-700: hsl(var(--ec-hs), var(--ec-l-700));
-    --ec-border-color: var(--ec-color-500);
+    --ec-border-color: rgb(114, 114, 114);
     --ec-accent-color: var(--ec-color-600);
     --ec-button-bg-color: var(--ec-bg-color);
     --ec-button-border-color: var(--ec-color-600);
@@ -20,15 +26,22 @@
     --ec-button-active-bg-color: var(--ec-color-300);
     --ec-button-active-border-color: var(--ec-color-700);
     --ec-button-active-text-color: var(--ec-button-text-color);
-    --ec-event-bg-color: #039be5;
+    --ec-event-bg-color: rgb(69, 22, 22);
     --ec-event-text-color: #fff;
     --ec-bg-event-color: var(--ec-color-500);
     --ec-bg-event-opacity: 0.3;
     --ec-list-day-bg-color: var(--ec-bg-color, var(--ec-bg-fallback-color));
-    --ec-today-bg-color: rgba(255, 220, 40, .15);
+    /* --ec-today-bg-color: rgba(139, 119, 23, 0.15); */
+    --ec-today-bg-color: var(--ec-bg-color);
     --ec-highlight-color: rgba(188, 232, 241, .3);
     --ec-popup-bg-color: var(--ec-bg-color, var(--ec-bg-fallback-color));
     --ec-now-indicator-color: #ea4335
+}
+
+#ec {
+    max-width: 900px;
+    width: 100%;
+    justify-self: center;
 }
 
 .ec-dark .ec {
@@ -164,7 +177,7 @@
 
 .ec-timeline .ec-sidebar {
     border-right-style: solid;
-    border: 1px solid var(--ec-border-color);
+    /* border: 1px solid var(--ec-border-color); */
     border-right: 1px var(--ec-border-color);
     padding: 0
 }
@@ -201,6 +214,7 @@
 .ec-time-grid .ec-body .ec-event {
     position: absolute
 }
+
 
 .ec-time-grid .ec-body .ec-event-title {
     position: sticky;
@@ -258,7 +272,7 @@
 }
 
 .ec-time-grid .ec-body:not(.ec-compact) .ec-line:nth-child(2n):after {
-    border-bottom-style: dotted
+    opacity: 0;
 }
 
 .ec-time-grid .ec-sidebar-title {
@@ -471,7 +485,6 @@
 .ec-day-head,
 .ec-days,
 .ec-header {
-    border: 1px solid var(--ec-border-color)
 }
 
 .ec-header {
@@ -501,11 +514,12 @@
 
 .ec-all-day {
     border-top: none;
-    flex-shrink: 0
+    flex-shrink: 0;
+    border-bottom: .25px rgb(75, 75, 75) solid;
 }
 
 .ec-all-day .ec-days {
-    border-bottom: none
+    border-bottom: none;
 }
 
 .ec-all-day .ec-day {
@@ -516,6 +530,7 @@
 .ec-body {
     overflow-x: hidden;
     overflow-y: auto;
+    max-height: calc(100vh - 100px);
     position: relative
 }
 
@@ -546,8 +561,12 @@
 }
 
 .ec-days {
-    border-style: none none solid
+    /* border-style: none none solid */
 }
+
+/* .ec-day[role="columnheader"] > time {
+    display: none;
+} */
 
 .ec-days:last-child {
     border-bottom: none
@@ -559,11 +578,11 @@
 }
 
 .ec-day {
-    border-style: none none none solid
+    border: none;
 }
 
 .ec-day.ec-today {
-    background-color: var(--ec-today-bg-color)
+    background-color: var(--ec-today-bg-color);
 }
 
 .ec-day.ec-highlight {
@@ -617,8 +636,10 @@
 
 .ec-event {
     background-color: var(--ec-event-bg-color);
-    border-radius: 3px;
-    box-shadow: 0 0 1px 0 var(--ec-border-color);
+    border-radius: .5rem;
+    border: 2.5px solid rgb(99, 40, 40);
+    border-left: 7px solid rgb(138, 46, 46);
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.15);
     box-sizing: border-box;
     color: var(--ec-event-text-color);
     display: flex;
@@ -642,6 +663,7 @@
 }
 
 .ec-event.ec-preview {
+    display: none!important;
     opacity: .8;
     position: absolute;
     -webkit-user-select: none;
@@ -652,6 +674,7 @@
 }
 
 .ec-event.ec-pointer {
+    display: none!important;
     box-shadow: none;
     color: inherit;
     display: flex;
@@ -666,7 +689,8 @@
 .ec-event-body {
     display: flex;
     flex-direction: column;
-    width: 100%
+    width: 100%;
+    padding: 5px;
 }
 
 .ec-all-day .ec-event-body,
@@ -686,7 +710,8 @@
     margin: 0 0 1px;
     max-height: 100%;
     overflow: hidden;
-    white-space: nowrap
+    white-space: nowrap;
+    order: 1;
 }
 
 .ec-day-grid .ec-event-time,
@@ -697,9 +722,13 @@
 }
 
 .ec-event-title {
-    font-weight: inherit;
+    font-weight: bolder;
     margin: unset;
     overflow: hidden
+}
+
+h4.ec-event-title {
+    display: none;
 }
 
 .ec-all-day .ec-event-title,
@@ -757,7 +786,7 @@
 
 .ec-popup {
     background-color: var(--ec-popup-bg-color);
-    border: 1px solid var(--ec-border-color);
+    /* border: 1px solid var(--ec-border-color); */
     border-radius: 6px;
     box-shadow: 0 1px 3px 0 hsla(var(--ec-hs), 50%, .15), 0 4px 8px 3px hsla(var(--ec-hs), 50%, .15);
     display: flex;

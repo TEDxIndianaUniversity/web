@@ -34,14 +34,14 @@ class WixOpenDateEmbed extends HTMLElement {
     static observedAttributes = ["event-id"];
     constructor() { super(); }
     attributeChangedCallback(name, oldValue, newValue) { render() }
-    connectedCallback() {this.render();}
+    connectedCallback() { this.render(); }
     attributeChangedCallback() { this.changeId(); }
     changeId() {
         const frame = document.querySelectorAll(`[id^=od-confirm-]`)[0];
         frame.setAttribute('src', `https://app.opendate.io/confirms/${this.getAttribute("event-id")}/web_orders/new`);
     }
     render() {
-        
+
         this.id = `od-embed-${this.getAttribute("event-id")}`;
         const embedScript = document.createElement('script');
         embedScript.setAttribute('src', 'https://app.opendate.io/packs/od_embed.js')
@@ -68,7 +68,7 @@ class WixOpenDateEmbed extends HTMLElement {
                 }),
             );
         })
-        
+
         let errorFree = false;
         try {
             var __thousands = '';
@@ -87,12 +87,12 @@ class WixOpenDateEmbed extends HTMLElement {
             cancelable: false,
             composed: true
         });
-        
-        
+
+
         this.addEventListener('iframe-error-show', (ev) => {
             console.log('event received:' + ev);
         })
-       
+
 
         if (errorFree) {
             frame.setAttribute('src', `https://app.opendate.io/confirms/${this.getAttribute("event-id")}/web_orders/new`);
@@ -117,7 +117,7 @@ class MetaSetter extends HTMLElement {
     static observedAttributes = ["name", "content"];
     constructor() { super(); }
     attributeChangedCallback(name, oldValue, newValue) { render() }
-    connectedCallback() {this.render();}
+    connectedCallback() { this.render(); }
     attributeChangedCallback() { this.render(); }
     render() {
         document.querySelector(`meta[name="${this.getAttribute("name")}"]`).setAttribute("content", this.getAttribute("content"));
@@ -128,7 +128,7 @@ customElements.define("tedx-set-meta", MetaSetter);
 class RoomCalendar extends HTMLElement {
     static observedAttributes = ["room-data", "room-code"];
     constructor() { super(); }
-    attributeChangedCallback(name, oldValue, newValue) {}
+    attributeChangedCallback(name, oldValue, newValue) { }
     connectedCallback() {
         const calStyle = document.createElement('link');
         calStyle.rel = 'stylesheet';
@@ -138,37 +138,49 @@ class RoomCalendar extends HTMLElement {
 
         const calScript = document.createElement('script');
         calScript.src = 'https://tedxindianauniversity.github.io/web/calendar/cal-logic.js';
-        calScript.addEventListener('load', () => {this.render();});
+        calScript.addEventListener('load', () => { this.render(); });
         this.insertAdjacentElement('beforeBegin', calScript);
+    }
+    getRoom() {
+        return this.getAttribute('room-code')
     }
     render() {
         let calendarData = [];
-        const databaseBuildingIds = {"BH":"1","CH":"2","ED":"3","EP":"4","FA":"5","GY":"6","PH":"7","JH":"8","LI":"9","LH":"10","MO":"11","SM":"12","MY":"13","OP":"14","PY":"15","TV":"16","RH":"17","RB":"18","PV":"19","FF":"20","SB":"21","SY":"22","TH":"23","WH":"24","WY":"25","KH":"26","HH":"27","SE":"28","SW":"29","GL":"36","HU":"39","AD":"42","AC":"43","GR":"46","MN":"47","GA":"48","CG":"126","MC":"127","TE":"137","WT":"138","SG":"173","BQ":"174","IF":"175","FQ":"176","FR":"177","GG":"178","RA":"179","RE":"180","WI":"181","C2":"184","EO":"189","MU":"190","UB":"192","I":"193","MA":"195","NA":"204","LS":"205","AN":"206","AS":"207","AZ":"208","ZB":"209","BC":"210","CP":"211","FX":"212","GF":"213","FV":"214","CS":"215","S7":"218","EG":"219","PC":"220","NT":"221","M2":"223","LW":"224","JS":"225","KD":"226","GS":"228","CN":"229","CX":"230","PB":"458","MG":"459","PJ":"460","CL":"470","VW":"471","MS":"473","MZ":"479","HC":"481","TC":"483","AB":"484","CU":"485","HS":"486","CR":"489","AM":"490","AH":"493","HI":"494","LU":"495","VD":"496","HL":"500","LL":"501","OA":"504","NV":"505"};
-        const ctsBuildingId = databaseBuildingIds[this.getAttribute('room-code').substring(2,4).replace(' ','')];
+        const databaseBuildingIds = { "BH": "1", "CH": "2", "ED": "3", "EP": "4", "FA": "5", "GY": "6", "PH": "7", "JH": "8", "LI": "9", "LH": "10", "MO": "11", "SM": "12", "MY": "13", "OP": "14", "PY": "15", "TV": "16", "RH": "17", "RB": "18", "PV": "19", "FF": "20", "SB": "21", "SY": "22", "TH": "23", "WH": "24", "WY": "25", "KH": "26", "HH": "27", "SE": "28", "SW": "29", "GL": "36", "HU": "39", "AD": "42", "AC": "43", "GR": "46", "MN": "47", "GA": "48", "CG": "126", "MC": "127", "TE": "137", "WT": "138", "SG": "173", "BQ": "174", "IF": "175", "FQ": "176", "FR": "177", "GG": "178", "RA": "179", "RE": "180", "WI": "181", "C2": "184", "EO": "189", "MU": "190", "UB": "192", "I": "193", "MA": "195", "NA": "204", "LS": "205", "AN": "206", "AS": "207", "AZ": "208", "ZB": "209", "BC": "210", "CP": "211", "FX": "212", "GF": "213", "FV": "214", "CS": "215", "S7": "218", "EG": "219", "PC": "220", "NT": "221", "M2": "223", "LW": "224", "JS": "225", "KD": "226", "GS": "228", "CN": "229", "CX": "230", "PB": "458", "MG": "459", "PJ": "460", "CL": "470", "VW": "471", "MS": "473", "MZ": "479", "HC": "481", "TC": "483", "AB": "484", "CU": "485", "HS": "486", "CR": "489", "AM": "490", "AH": "493", "HI": "494", "LU": "495", "VD": "496", "HL": "500", "LL": "501", "OA": "504", "NV": "505" };
+        const ctsBuildingId = databaseBuildingIds[this.getAttribute('room-code').substring(2, 4).replace(' ', '')];
         const roomNumber = this.getAttribute('room-code').split(' ')[1];
+        const currentDateTime = new Date();
         const classroomDatabaseURL = `https://cts.iu.edu/rooms/search?campus_id=1&building_id=${ctsBuildingId}&room_number=${roomNumber}&room_number_exact_search=%7Cexact%7C`;
         JSON.parse(this.getAttribute('room-data')).forEach(event => {
             calendarData.push({
-                "id" : event['id'],
-                "allDay" : event['all_day'] == 0 ? false : true,
-                "start" : event['start'],
-                "end" : event['end'],
-                "editable" : false,
-                "startEditable" : false,
-                "durationEditable" : false,
-                "title" : "Event"
+                "id": event['id'],
+                "allDay": event['all_day'] == 0 ? false : true,
+                "start": event['start'],
+                "end": event['end'],
+                "editable": false,
+                "startEditable": false,
+                "durationEditable": false,
+                "title": "Event"
             })
         });
 
         this.innerHTML = `<div id="ec"></div>`;
-        
+
         const initScript = document.createElement('script');
-        initScript.innerHTML = `const ec = new EventCalendar(document.getElementById('ec'), 
+        initScript.innerHTML = `var ec = new EventCalendar(document.getElementById('ec'), 
         {view: 'timeGridDay', 
-        headerToolbar: {start: 'prev,next',center: 'title',end: 'today'},
+
+        headerToolbar: {start: 'prev next',center: 'title' , end: 'today'},
+        editable: 'false',
+        eventStartEditable: 'false',
+        eventDurationEditable: 'false',
+        selectable: 'false',
         resources: [{id: 1, title: '${this.getAttribute('room-code')}'}],
-        scrollTime: '09:00:00',
+        scrollTime: '${currentDateTime.getHours()}:00:00',
+        select: false,
         events: ${JSON.stringify(calendarData)},
+        titleFormat: { month: 'short', day: 'numeric' },
+        dayHeaderFormat: { weekday: 'short', month: 'short', day: 'numeric', omitCommas: true },
         views: {
             timeGridWeek: {pointer: true},
             resourceTimeGridWeek: {pointer: true},
@@ -179,11 +191,52 @@ class RoomCalendar extends HTMLElement {
                 slotWidth: 80,
                 resources: [{id: 1, title: '${this.getAttribute('room-code')}'}]
             }
-        },dayMaxEvents: true,nowIndicator: true,selectable: true});`;
-    this.insertAdjacentElement('afterend', initScript);
+        },dayMaxEvents: true,nowIndicator: true,selectable: true});
+        document.getElementsByClassName('ec-title')[0].innerText = document.getElementsByTagName('tedx-room-calendar')[0].getAttribute('room-code');
 
+        let touchstartX = 0
+    let touchendX = 0
+        
+    function checkDirection() {
+        if (touchendX < touchstartX) ec.next()
+        if (touchendX > touchstartX) ec.prev()
+    }
+
+    this.addEventListener('touchstart', e => {
+        touchstartX = e.changedTouches[0].screenX
+    })
+
+    this.addEventListener('touchend', e => {
+        touchendX = e.changedTouches[0].screenX
+        checkDirection()
+    })
+
+    var viewportWidth;
+    var setViewportWidth = function () {
+        viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+    }
+    function checkIfChangeView() {
+        if (viewportWidth > 755) {
+            ec.setOption('view', 'timeGridWeek');
+        } else {
+            ec.setOption('view', 'timeGridDay');
+        }
+    }
+    setViewportWidth();
+    checkIfChangeView();
+    window.addEventListener('resize', function () {
+        setViewportWidth();
+        checkIfChangeView();
+    }, false);
+        `;
+        this.insertAdjacentElement('afterend', initScript);
+
+
+
+        // document.querySelector('.ec-day[role="columnheader"]').
     }
 }
+
 
 
 customElements.define("tedx-room-calendar", RoomCalendar);
