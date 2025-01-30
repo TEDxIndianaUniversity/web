@@ -376,8 +376,11 @@ class RoomCalendar extends HTMLElement {
         checkIfChangeView();
         document.getElementsByClassName('ec-title')[0].innerText = document.getElementsByTagName('tedx-room-calendar')[0].getAttribute('room-code');
     }, false);
-
     
+        try {
+            // Wix Custom Element specific rendering issue.
+            document.querySelector("[data-testid='custom-element']:has( > tedx-room-calendar)").style.display = 'block';
+        } catch {}
         `;
         this.insertAdjacentElement('afterend', initScript);
         const nextEventAd = document.createElement('tedx-next-event');
@@ -385,8 +388,7 @@ class RoomCalendar extends HTMLElement {
         document.getElementsByClassName('ec-title')[0].addEventListener('load', () => {
             document.getElementsByClassName('ec-title')[0].innerText = document.getElementsByTagName('tedx-room-calendar')[0].getAttribute('room-code');
         })
-
-        // document.querySelector('.ec-day[role="columnheader"]').
+        
     }
 }
 
