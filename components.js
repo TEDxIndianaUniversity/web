@@ -261,8 +261,8 @@ class RoomCalendar extends HTMLElement {
     connectedCallback() {
         const calStyle = document.createElement('link');
         calStyle.rel = 'stylesheet';
-        // calStyle.href = 'https://tedxindianauniversity.github.io/web/calendar/cal-style.css'
-        calStyle.href = './calendar/cal-style.css';
+        calStyle.href = 'https://tedxindianauniversity.github.io/web/calendar/cal-style.css'
+        // calStyle.href = './calendar/cal-style.css';
         this.insertAdjacentElement('beforeBegin', calStyle);
 
         const calScript = document.createElement('script');
