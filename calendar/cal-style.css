@@ -252,9 +252,9 @@ tedx-next-event .tedx-ne {
 
 @media only screen and (max-width: 755px) {
     .ec-start {
-        flex: auto;
-        padding: 0 10px;
-    }
+    flex: auto;
+    padding: 0 10px;
+}
 }
 
 
@@ -435,7 +435,8 @@ tedx-next-event .tedx-ne {
     border-radius: .25rem;
     font-size: 1rem;
     line-height: 1.5;
-    padding: .375rem .75rem
+    padding: .375rem .75rem;
+    text-transform: capitalize;
 }
 
 .ec-button:not(:disabled) {

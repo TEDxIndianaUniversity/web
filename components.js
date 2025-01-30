@@ -154,29 +154,83 @@ class NextTEDxEvent extends HTMLElement {
             .tedx-ne-body {
                 display: flex;
                 padding: 7.5px;
+                flex-direction: row;
                 justify-self: center;
                 justify-content: center;
                 align-content: center;
+                gap: 15px;
+                height: 60px;
             }
             .tedx-ne .powered-by {
                 display: flex;
                 flex-direction: column;
+                justify-content: center;
+                align-content: center;
                 gap: 5px;
                 font-size: .7em;
+                height: 60px;
+                font-weight: bold;
             }
             .powered-by p {
                 margin: 0;
             }
             .tedx-ne #tedx-logo {
                 display: block;
-                height: 2em;
+                height: calc(.7em + 12px);
+            }
+            .tedx-ne .event-promo {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-end;
+                gap: 5px;
+            }
+
+            .event-promo p {
+                font-size: .7em;
+                font-weight: bold;
+                margin: 0;
+            }
+
+            .tedx-ne .tedx-button {
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                border-radius: 0.4rem;
+                border: 2px solid rgba(97, 97, 97, 0.5);
+                background: rgba(74, 74, 74, 0.5);
+                width: max-content;
+                height: max-content;
+                padding: 5px 8px;
+                text-decoration: none;
+                color: white;
+                font-size: .7em;
+
+                background: rgba(178, 57, 57, 0.75);
+                border: 2px solid rgba(77, 24, 24, 0.5);
+
+                &::after {
+                    display: inline-flex;
+                    color: white;
+                    font-weight: 700;
+                    height: 100%;
+                    content: " \\2192" / " ";
+                }
+
+                &:hover {
+                    background: rgba(178, 57, 57, 0.85);
+                }
+
+                &:active {
+                    background: rgba(178, 57, 57, 1);
+                }
             }
         </style>
         <div class="tedx-ne">
             <a href="https://www.tedxiu.com/" style="text-decoration: none;color: white;">
             <div class="tedx-ne-body">
                 <div class="powered-by">
-                    <p>Powered by</p>
+                    <p>Developed by</p>
                     <svg xmlns="http://www.w3.org/2000/svg" id="tedx-logo" viewBox="0 0 2100 200" aria-label="TEDxIndianaUniversity">
                         <defs>
                             <style>
@@ -188,6 +242,9 @@ class NextTEDxEvent extends HTMLElement {
                             <path class="cls-2" d="M40.85 38H0V.59h126.57V38H85.73v108.55H40.85V38ZM133.54.59h122.87V38h-77.96v18.19h77.96v34.76h-77.96v18.19h77.98v37.41H133.54V.59ZM263.97.59h73.7c48.58 0 65.75 35.98 65.75 72.77 0 44.78-23.68 73.2-74.52 73.2h-64.93V.59Zm44.91 108.55h17.56c27.98 0 32.07-22.7 32.07-36.41 0-9.18-2.87-34.73-35.34-34.73h-14.29v71.14ZM467.95 90.66l-13.7-22.75-13.36 22.75h-32.91l31.24-46-30.08-44h32.92l12.19 21.75L466.79.66h32.91l-30.07 44 31.24 46h-32.91Z"/>
                         </g>
                     </svg>
+                </div>
+                <div class="event-promo">
+                    <a href="https://www.tedxiu.com" class="tedx-button">See Events</a>
                 </div>
             </div>
             </a>
@@ -241,8 +298,15 @@ class RoomCalendar extends HTMLElement {
         const initScript = document.createElement('script');
         initScript.innerHTML = `var ec = new EventCalendar(document.getElementById('ec'), 
         {view: 'timeGridDay', 
-
-        headerToolbar: {start: 'prev next',center: 'title' , end: 'today'},
+        customButtons: {
+            roomInfo: {
+                text: 'Room Info',
+                click: function() {
+                    window.open('${classroomDatabaseURL}', '_blank').focus();
+                }
+            }
+        },
+        headerToolbar: {start: 'prev next',center: 'title' , end: 'today roomInfo'},
         editable: 'false',
         eventStartEditable: 'false',
         eventDurationEditable: 'false',
@@ -266,9 +330,16 @@ class RoomCalendar extends HTMLElement {
         },dayMaxEvents: true,nowIndicator: true,selectable: true});
         document.getElementsByClassName('ec-title')[0].innerText = document.getElementsByTagName('tedx-room-calendar')[0].getAttribute('room-code');
 
-        let touchstartX = 0
-    let touchendX = 0
+        try {if (!touchstartX) {}
+        } catch {
+         let touchstartX = 0
+        }
         
+        try {if (!touchendX) {}
+        } catch {
+         let touchendX = 0
+        }
+
     function checkDirection() {
         if (touchendX - touchstartX > 60 || touchstartX - touchendX > 60) {
             if (touchendX < touchstartX) ec.next()
@@ -292,10 +363,10 @@ class RoomCalendar extends HTMLElement {
     function checkIfChangeView() {
         if (viewportWidth > 755) {
             ec.setOption('view', 'timeGridWeek');
-            ec.setOption('headerToolbar', {start: 'prev next',center: 'title' , end: 'today'});
+            ec.setOption('headerToolbar', {start: 'prev next',center: 'title' , end: 'today roomInfo'});
         } else {
             ec.setOption('view', 'timeGridDay');
-        ec.setOption('headerToolbar', {start: 'title',center: '' , end: 'today'});
+        ec.setOption('headerToolbar', {start: 'title',center: '' , end: 'today roomInfo'});
         }
     }
     setViewportWidth();
@@ -305,11 +376,15 @@ class RoomCalendar extends HTMLElement {
         checkIfChangeView();
         document.getElementsByClassName('ec-title')[0].innerText = document.getElementsByTagName('tedx-room-calendar')[0].getAttribute('room-code');
     }, false);
+
+    
         `;
         this.insertAdjacentElement('afterend', initScript);
         const nextEventAd = document.createElement('tedx-next-event');
         this.insertAdjacentElement('afterend',nextEventAd);
-
+        document.getElementsByClassName('ec-title')[0].addEventListener('load', () => {
+            document.getElementsByClassName('ec-title')[0].innerText = document.getElementsByTagName('tedx-room-calendar')[0].getAttribute('room-code');
+        })
 
         // document.querySelector('.ec-day[role="columnheader"]').
     }
