@@ -392,6 +392,10 @@ class RoomCalendar extends HTMLElement {
     }
 }
 
+class LiteYTEmbed extends HTMLElement {
+}
+customElements.define('lite-youtube', LiteYTEmbed);
+
 
 
 customElements.define("tedx-room-calendar", RoomCalendar);

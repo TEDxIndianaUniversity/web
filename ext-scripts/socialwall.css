@@ -1,0 +1,15 @@
+.wall-notification.wall-notification-default.wall-notification-trial {
+  display: none;  
+}
+
+#createPostButton, .checkin-user, .user-reactions-wrapper, div.wall-notification-trial-background {
+  display: none;
+}
+
+.socialwall_header_title {
+  display: none;
+}
+
+.checkin-color-1 {
+  border: none;
+}
